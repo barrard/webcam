@@ -1,0 +1,49 @@
+<form action="" id="loginForm" method="post" accept-charset="utf-8">
+
+
+	username: <input id='usernameInput' type="text" name="username" required value="" placeholder=""><br>
+	password: <input type="password" id='userPasswordInput'required name="password" value="" placeholder=""><br>
+	<input type="submit" name="" value="Submit">
+	
+	</form>
+
+	<script>
+	function logout(){
+		
+	}
+	function setStorage(username, password){
+	 
+	  localStorage.setItem("password", password)
+		localStorage.setItem("username", username)
+	  localStorage.setItem("rememberMe", true)
+		console.log('stored the username '+username)
+	}
+	var loginForm = $('#loginForm')
+	// this is the id of the form
+	$(loginForm).submit(function(e) {
+	  var username = $('#usernameInput').val()
+	  var password = $('#userPasswordInput').val()
+
+	    setStorage(username, password)
+	
+	  $('.errorMessages').html('')
+		e.preventDefault(); // avoid to execute the actual submit of the form.
+		var data =  JSON.stringify(($(loginForm).serializeObject()))
+		socket.emit('new', data, socketid)
+		console.log(data+' socketid is '+socketid)
+		console.log('sending the form socket style')
+
+	});
+
+	if (localStorage.getItem("rememberMe")==='true') {
+	  $('#rememberMe').prop('checked', true)
+	  console.log('localStorage.getItem("rememberMe") is checked')
+	  console.log('We got a username of '+ localStorage.getItem("username"))
+	  console.log('and a pass word = '+localStorage.getItem("password"))
+	  $('#usernameInput').val(localStorage.getItem("username"))
+	  $('#userPasswordInput').val(localStorage.getItem("password"))
+	  $('#loginForm').submit()
+
+	};
+
+	</script>	

@@ -1,0 +1,311 @@
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="btn-group">
+  <button type="button" id='myLocation'class='btn btn-success'> <span class='map-icon map-icon-location-arrow'></span> My location <span class='map-icon map-icon-crosshairs'></span>  </button>
+  <button type="button" id ='stopTracking' class='btn btn-danger'>Stop GPS <span class='glyphicon glyphicon-remove'></span> </button>
+  <button type="button" class='btn btn-info'>options <span class='glyphicon glyphicon-th-list'></span> </button>
+  <button type="button" class='btn btn-muted'>possible <span class='glyphicon glyphicon-road'></span> </button>
+</div>
+
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12" id='map'></div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <table class='table'>
+      <caption>Your location Details</caption>
+      <thead>
+        <tr id='GPStableHeaderDetails'>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr id='GPStableBodyDetails'>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="gpsStatus"></div>
+
+
+<style>
+  .wi{
+    color:goldenrod;
+    font-size: 40px;
+  }
+
+</style>
+
+<script>
+     map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 20.78881630731087,
+        lng: -156.3409423828125},
+    scrollwheel: false,
+    zoom: 10
+  });
+     CurrentFriendMarkers = {}
+
+
+//weather data on click function
+     map.addListener('click', function(e) {
+
+       var lat = e.latLng.lat()
+       var lng = e.latLng.lng()
+       var geocoder = new google.maps.Geocoder;
+       var myLatLng = new google.maps.LatLng(e.latLng.lat(), e.latLng.lng())
+       geocoder.geocode({'location': myLatLng}, function(results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+          var myLatlng = new google.maps.LatLng( lat, lng );
+           placeClicked = results[1].formatted_address
+           console.log(results)
+                console.log(placeClicked);
+                   $.ajax({
+                          url: 'https://api.forecast.io/forecast/ee56df7c95dbc07fbfe02bb565ee45fd/' + lat + ',' + lng,
+                          dataType:'jsonp',
+                          //data : ,
+                           success: function(result){
+                             console.log(result)
+                            var weatherIcon = '<i class="wi wi-'+result.currently.icon+'"></i>';
+                            console.log(result.currently.icon)
+                            //for tests
+                            // var myLatlng = {lat:20.922460296691863 ,  lng: -156.3110422903265}
+                            var marker = new MarkerWithLabel({
+                                   position: myLatlng,
+                                   // draggable: true,
+                                   // raiseOnDrag: true,
+                                   labelContent: weatherIcon,
+                                   map: map,
+                                   icon: ' ',
+                                   labelAnchor: new google.maps.Point(25,25),
+                                   title:placeClicked+' '+result.currently.summary,
+                                   labelClass: "labels", // the CSS class for the label
+                                   labelStyle: {opacity: 0.75}
+                                 });
+                    }
+
+                // });
+
+        })
+      }
+         })
+
+     })//weather data on click function
+
+  var geo_options = {
+  enableHighAccuracy: true, 
+  maximumAge        : 0, 
+  timeout           : 5000
+};
+var MyCurrentPositionAray=[];
+var MongoDbLocData = []
+
+function successGPS(position){
+  $('#GPStableHeaderDetails').html('')
+  $('#GPStableBodyDetails').html('')
+  console.log('success')
+  for(var k in position.coords){
+  $('#GPStableHeaderDetails').append('<th>'+k+ '</th>')
+
+  $('#GPStableBodyDetails').append('<td>'+position.coords[k]+ '</td>')
+  }//position cords details loop
+  //build object to emit
+  var pos = {
+    socketId: socketid,
+    username: localStorage.getItem("username"),
+    lat: position.coords.latitude,
+    lng: position.coords.longitude,
+    speed: position.coords.speed,
+    accuracy: position.coords.accuracy,
+    altitude: position.coords.altitude,
+    heading: position.coords.heading,
+
+    timestamp:position.timestamp
+     };
+     pos.speed = Math.round(pos.speed*3600/1609)+' mph'
+     if(pos.speed <1){pos.speed=0+' MPH'}
+    pos.altitude = Math.round(pos.altitude*3.28)+' ft'
+  console.log('the pos object looiks like ');
+  for (var k in pos){console.log(k+' : '+pos[k]);}
+  MongoDbLocData.push(pos)
+  console.log('the MongoDbLocData array looks like ');
+  console.log(MongoDbLocData);
+//default google maps marker
+     //  var marker = new google.maps.Marker({
+     //   position: pos,
+     //    map: map,
+     //   title: 'Hello World!'
+     // });
+//marker with some kind of label
+var myIcon = 'map-icon-wind-surfing'
+var weatherIcon = '<i class="map-icon '+myIcon+'"></i>'
+//testing      
+    // var myLatlng = new google.maps.LatLng(020.82486646840518,-156.36553677657503)
+
+ 
+       if(MyCurrentPositionAray.length <=0){
+        console.log('Marker array?');
+       }else if(MyCurrentPositionAray.length > 5){
+        $('.gpsStatus').html('Resetting your GPS array')
+        $.ajax({
+          url:'/updateLocations',
+          type:'POST',
+          data: JSON.stringify(MongoDbLocData),
+          contentType: 'application/json',
+          success:function(data){
+            console.log('Was the AJAX locations sent correctly??? '+data);
+          },
+          error:function(error){
+            console.log('error '+error);
+          }
+        })
+        MyCurrentPositionAray[MyCurrentPositionAray.length -1].setMap(null)
+        MyCurrentPositionAray.length = 0
+        MongoDbLocData.length = 0
+       }else{
+        console.log('delete that marker?');
+        MyCurrentPositionAray[MyCurrentPositionAray.length -1].setMap(null)
+       }
+//for testing
+//var myLatlng = {lat:20.922460296691863 ,  lng: -156.3110422903265}
+       var marker = new MarkerWithLabel({
+               position: pos,
+               // draggable: true,
+               // raiseOnDrag: true,
+               labelContent: pos.username+'<br><span class="map-icon map-icon-label map-icon-postal-code"></span>',
+               // map: map,
+               icon: ' ',
+               labelAnchor: new google.maps.Point(10,30),
+              // title:placeClicked+' '+result.currently.summary,
+               labelClass: "labels", // the CSS class for the label
+               labelStyle: {opacity: 0.75,
+                             height:'100px',
+                             width:'100px'
+                              }
+             });
+
+
+
+       MyCurrentPositionAray.push(marker)
+       $('.gpsStatus').html('GPS array length '+MyCurrentPositionAray.length)
+        MyCurrentPositionAray[MyCurrentPositionAray.length -1].setMap(map)
+
+     socket.emit('weGotSomePositionToShare', pos)
+}
+function handleErrorGPS(error){
+  console.log('error')
+  console.log(error.code)
+  console.log(error)
+  $('.gpsStatus').html('Error initializing GPS, error code '+error.code)
+}
+
+var watchID;
+var ActiveGPS = false
+function getLocation () {
+  if(ActiveGPS === true ){
+    console.log('stop GPS before starting');
+   $('#stopTracking').click()
+    }else{
+      ActiveGPS = true
+      console.log('STartiong GPS Tracking');
+      watchID = navigator.geolocation.watchPosition(successGPS, handleErrorGPS, geo_options)
+
+    }
+  }
+
+$('#myLocation').on('click', function(){ getLocation(); })
+
+$('#stopTracking').on('click', function(){
+  var dataObj = {
+    user:localStorage.getItem('username'),
+    timestamp: new Date()
+  }
+  socket.emit('someUSerStoppedGPSTracking' )
+  $('#GPStableHeaderDetails').html('')
+  $('#GPStableBodyDetails').html('')
+ navigator.geolocation.clearWatch(watchID);
+      ActiveGPS = false
+  })
+
+
+
+
+localStorage.setItem('friendPositions', JSON.stringify({}))
+  var FriendsLocations = JSON.parse(localStorage.getItem('friendPositions'));
+
+
+
+
+socket.on('allFriendsGPSPosition', function(data){
+  console.log('server data with gps positions')
+var pos = data
+
+if(FriendsLocations[pos.username]===undefined){
+  FriendsLocations[pos.username] ={}
+  console.log('Creating Marker Array for user '+pos.username);
+  FriendsLocations[pos.username].currentPosition = []
+}else{
+  console.log('How much marker locations we got now for '+pos.username);
+  console.log(FriendsLocations[pos.username].currentPosition.length+' many markers');
+}
+
+
+  if(FriendsLocations[pos.username].currentPosition.length <=0){
+   console.log('Marker array?');
+  }else if(FriendsLocations[pos.username].currentPosition.length > 5){
+   FriendsLocations[pos.username].currentPosition[FriendsLocations[pos.username].currentPosition.length -1].setMap(null)
+
+   FriendsLocations[pos.username].currentPosition.length = 0
+  }else{
+   console.log('delete that marker?');
+   FriendsLocations[pos.username].currentPosition[FriendsLocations[pos.username].currentPosition.length -1].setMap(null)
+  }
+
+
+  var marker = new MarkerWithLabel({
+                position: pos,
+                // draggable: true,
+                // raiseOnDrag: true,
+                labelContent: '<div class="panell">'+pos.username+"<br> speed : "+pos.speed+'<br>altitude : '+pos.altitude+'</div><br><span class="map-icon map-icon-label map-icon-postal-code"></span>',
+                // labelContent: pos.username+" speed : "+pos.speed+'<br>altitude : '+pos.altitude,
+                
+                // map: map,
+                icon: ' ',
+                labelAnchor: new google.maps.Point(11,86),
+               // title:placeClicked+' '+result.currently.summary,
+                labelClass: "labels", // the CSS class for the label
+                labelStyle: {opacity: 0.69}
+              });
+
+  FriendsLocations[pos.username].currentPosition.push(marker)
+   FriendsLocations[pos.username].currentPosition[FriendsLocations[pos.username].currentPosition.length -1].setMap(map)
+
+
+
+
+ FriendsLocations[pos.username].pos = pos
+
+
+
+// localStorage.setItem("friendPositions", JSON.stringify(FriendsLocations));
+
+
+
+ console.log('Is this POS working? '+pos+' I also have this in LOCALSTORAGE')
+ console.log(JSON.parse(localStorage.getItem('friendPositions')));
+ 
+//  FriendsLocations.username = pos.username;
+//  if(FriendsLocations.username){
+// console.log('  i can see you '); 
+// }else{
+//   console.log('no can see you');
+// }
+})
+
+
+
+</script>

@@ -1,0 +1,63 @@
+
+	<div class="col-xs-12 text-center">
+		<div id='filesList'>
+			
+			<div>
+				<button type="button" class='btn-sm' id='HideFilesBtn'>
+				    <span class="">Hide Files | <span class='glyphicon glyphicon-remove text-danger'></span></span>
+				</button>
+			</div>
+<!-- 
+			<div class="fileIcon">
+				<span class='glyphicon glyphicon-file'></span>
+				<br>
+				<div class="caption">
+					IMG_2261.file
+				</div>
+			</div>
+
+
+			<div class="col-xs-3">
+				<div class="thumbnail">
+					<span class='glyphicon glyphicon-remove text-danger'></span>
+					<button type="button" id='PrimitiveBtn' class='btn-sm primitive'>
+					    Primitive | <span class='glyphicon glyphicon-picture'></span>
+					</button>
+					<img  src="../../users/newbie/IMG_2261.JPG" alt=""height="200" width="200">
+					<div class="caption">
+					IMG_2261.JPG 
+					</div>
+
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="thumbnail">
+					<video src="../../users/Fuck/upload_9280aa6022f2ff4bcc7bd119414f9d98.MOV" height="200" width="200" controls></video>
+					<div class="caption">
+						upload_9280aa6022f2ff4bcc7bd119414f9d98.MOV
+					</div>
+				</div>
+			</div> -->
+
+			<div id="ClientQueList">
+				QUELIST <span id='perventCompletePrimitive'>per</span>
+			</div>
+
+
+		</div>
+
+	</div>
+
+<script>
+var username = localStorage.getItem("username")
+	console.log(username);
+
+	socket.emit('getUserFiles', username)
+
+$('#HideFilesBtn').on('click',function(){
+    console.log('click the files button to hide');
+    FilesOpen = true
+    $('#myFilesBtn').click()
+})
+
+</script>

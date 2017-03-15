@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/css" href="./dragula/dragula.css">
+	<link rel="stylesheet" type="text/css" href="myGridCore.css">
+	<link rel="stylesheet" type="text/css" href="myCSSutil.css">
+	<meta charset="UTF-8">
+	<title>Docs My Grid</title>
+</head>
+<body>
+	<div class="row">
+		<div class="col small self-start">
+			<a href="https://github.com/barrard/myGrid.git">github</a>
+		</div>
+			<div class="draggable col">
+				<h1 >Welcome to the Documentation of My Grid</h1>
+			</div>
+
+		</div>	
+		<div class="row">
+			<h4>The simple flex grid library</h4>
+	</div>
+	<div class="row top">
+		<div class="col start">
+<div class="row">
+	<div class="col">
+					<p>All content is box-sizing:border-box</p>
+				which doesnt make a huge difference IMO
+	</div>
+	<div class="col">
+	<h3>select a key word  --------->  </h3>
+	</div>
+</div>
+<hr class="xlarge"></hr>
+
+<div class="row start">
+	<div class="col">
+
+		<h1>Row</h1>
+		Row is the first of two primary building blocks
+		<code>&lt;div class='row'&gt;&lt;/div&gt;</code>
+		<code>&lt;div class='row start'&gt;&lt;/div&gt;</code>
+		<code>&lt;div class='row end'&gt;&lt;/div&gt;</code>	
+					
+	</div>
+	<div class="col pack">
+		<div class="row">
+			I'm a row
+		</div>
+		<div class="row start">
+			I'm a row start
+		</div>
+		<div class="row end">
+			I'm a row end
+		</div>
+	</div>
+</div>
+<hr class='large'>
+
+<div class="row start">
+	<div class="col">
+
+		<h1>Col</h1>
+		Col is the other primary building block
+		<code>&lt;div class='col'&gt;&lt;/div&gt;</code>
+		<code>&lt;div class='col start'&gt;&lt;/div&gt;</code>
+		<code>&lt;div class='col end'&gt;&lt;/div&gt;</code>	
+					
+	</div>
+	<div class="row little ">
+		<div class="col self-stretch ">
+			I'm a col stretch
+		</div>
+		<div class="col self-start ">
+			I'm a col start
+		</div>
+		<div class="col self-end ">
+			I'm a col end
+		</div>
+	</div>
+</div>
+
+<hr class='large'>
+
+
+<div class="row start">
+	<div class="col">
+
+		<h1>Wrap</h1>
+		Wrap can be applied to a row or col
+		<code>&lt;div class='row wrap'&gt;&lt;/div&gt;</code>
+		<code>&lt;div class='col wrap'&gt;&lt;/div&gt;</code>
+		<br>
+		<hr class='large'>
+
+		Doesn't have much effect to col
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+
+		<br>
+		
+	<div class="row">colum without wrap</div>
+
+	<div class="row">
+		<div  id=''class="col short pack">
+			<div class="row medium">row</div>
+			<div class="row medium">row</div>
+			<div class="row medium">row</div>
+			<div class="row medium">row</div>
+			<div class="row medium">row</div>
+			<div class="row medium">row</div>
+			<div class="row medium">row</div>
+			<div class="row medium">row</div>
+			<div class="row medium">row</div>
+			<div class="row medium">row</div>
+		</div>
+	</div>
+					
+	</div>
+<div class="col">
+	<div class="row">row without wrap</div>
+	<div class="row">
+		<div class="col">
+			I'm a col
+		</div>
+		<div class="col start">
+			I'm a col start
+		</div>
+		<div class="col end">
+			I'm a col end
+		</div>
+	</div>
+	<hr class='large'>
+
+	<div class="row">row with wrap</div>
+
+	<div class="row wrap">
+		<div class="col">
+			I'm a col
+		</div>
+		<div class="col start">
+			I'm a col start
+		</div>
+		<div class="col end">
+			I'm a col end
+		</div>
+	</div>
+	<hr class='large'>
+
+	<div class="row">col with wrap and set height little</div>
+
+	<div class="row ">
+		<div id='' class="col wrap short start pack">
+			<div class="row small draggable">small</div>
+			<div class="row small draggable">small</div>
+			<div class="row small draggable">small</div>
+			<div class="row small draggable">small</div>
+			<div class="row small draggable">small</div>
+			<div class="row small draggable">small</div>
+			<div class="row medium draggable">med</div>
+			<div class="row medium draggable">med</div>
+			<div class="row medium draggable">med</div>
+			<div class="row medium draggable">med</div>
+			<div class="row medium draggable">sdfsdf</div>
+			<div class="row medium draggable">med</div>
+			<div class="row medium draggable">med</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+</div>
+
+		<hr class='large'>
+
+<div class="row start">
+	<div class="col">
+
+		<h1>Small, Medium, Large, XLarge</h1>
+		Changes the width of a row or col
+		<code>&lt;div class='row small'&gt;&lt;/div&gt;</code>
+		<code>&lt;div class='row medium'&gt;&lt;/div&gt;</code>
+		<code>&lt;div class='row large'&gt;&lt;/div&gt;</code>
+		<code>&lt;div class='row xlarge'&gt;&lt;/div&gt;</code>
+					
+	</div>
+<div class="col">
+	<div class="row small">small 25%</div>
+	<div class="row medium">medium 33%</div>
+	<div class="row large">large 50%</div>
+	<div class="row xlarge">xlarge 75%</div>
+
+
+
+
+</div>
+
+</div>
+
+<hr class='large'>
+
+
+<div class="row start">
+	<div class="col">
+
+		<h1>Little, Short, Tall</h1>
+		Changes the view height of a row or col
+		<code>&lt;div class='col little'&gt;&lt;/div&gt;</code>
+		<code>&lt;div class='col short'&gt;&lt;/div&gt;</code>
+		<code>&lt;div class='col tall'&gt;&lt;/div&gt;</code>
+	
+	</div>
+<div class="col">
+	<div class="row start">
+		<div class="col little start">
+			<div class="row">start</div>
+			little
+		</div>
+		<div class="col short end">
+			<div class="row">end</div>
+
+			short
+		</div>
+		<div class="col tall">
+			<div class="row">default</div>
+			tall
+		</div>
+	</div>
+</div>
+
+</div>
+<hr class='large'>
+
+<div class="row start">
+	<div class="col">
+
+		<h1>Space</h1>
+		Divides available space between all items
+		<code>&lt;div class='row space'&gt;&lt;/div&gt;</code>
+	
+	</div>
+<div class="col">
+	<div class="row pack">
+	<div class="box">box</div>
+	<div class="box">box</div>
+	<div class="box">box</div>
+	</div>
+	<hr class="large">
+	<div class="row space pack">
+	<div class="box">box</div>
+	<div class="box">box</div>
+	<div class="box">box</div>
+	</div>
+	<div class="row">
+		<div class="col little">
+			<div class="row drag">row</div>
+			<div class="row drag">row</div>
+			<div class="row drag">row</div>
+		</div>
+		<div class="col space little">
+			<div class="row  drag">row</div>
+			<div class="row drag">row</div>
+			<div class="row drag">row</div>
+
+		</div>
+	</div>
+</div>
+
+
+</div>
+<hr class='large'>
+
+<div class="row start">
+	<div class="col">
+
+		<h1>Self-end, start, stretch, center</h1>
+		Individual items aligned
+		<code>&lt;div class='self-end'&gt;&lt;/div&gt;</code>
+		<code>&lt;div class='self-center'&gt;&lt;/div&gt;</code>
+		<code>&lt;div class='self-stretch'&gt;&lt;/div&gt;</code>
+		<code>&lt;div class='self-start'&gt;&lt;/div&gt;</code>
+	<div class="row little space pack">
+		
+			<div class="col small self-end drag">end</div>
+			<div class="col small self-start drag">start</div>
+			<div class="col small self-stretch drag">stretch</div>
+			<div class="col small self-center drag">center</div>
+			
+		
+	</div>
+	</div>
+<div class="col short wrap">
+	<div draggable="true"class="row small drag">default row small</div>
+	<div draggable="true"class="row small self-end drag">end</div>
+	<div draggable="true"class="row small self-start drag">start</div>
+	<div draggable="true"class="row small self-center drag">center</div>
+	<div draggable="true"class="row small self-end drag">end</div>
+<!-- <div class="row small self-stretch ">stretch</div> -->
+</div>
+<div class="col small short">
+	<div class="row self-stretch">
+		stretch
+	</div>
+</div>
+
+
+</div>
+<hr class='large'>
+
+<div class="row start">
+	<div class="col">
+
+		<h1>Quarter, Half, Giant, Full</h1>
+		Percentage Height: 25%, 50%, 75%, 100%
+		<code>&lt;div class='quarter'&gt;&lt;/div&gt;</code>
+		<code>&lt;div class='half'&gt;&lt;/div&gt;</code>
+		<code>&lt;div class='giant'&gt;&lt;/div&gt;</code>
+	<div class="row little start" id='look'>
+		
+			<div draggable="true"class="col small quarter ">25%</div>
+			<div draggable="true"class="col small half ">50%</div>
+			<div draggable="true"class="col small giant ">75%</div>
+			<div draggable="true"class="col small full ">100%</div>
+			
+		
+	</div>
+	</div>
+<div class="col short wrap" id='right'>
+	<div class="row small">default row small</div>
+	<div class="row small quarter">25%</div>
+	<div class="row small half">50%</div>
+	<div class="row small giant ">75%</div>
+	<div class="row small full">100%</div>
+<!-- <div class="row small self-stretch ">stretch</div> -->
+</div>
+
+
+
+</div>
+<hr class='large'>
+
+<div class="row">
+	
+</div>
+
+
+
+
+<hr class='large'>
+
+<div class="col pack" id='color'>
+	<div class="row red draggable"><code>&lt;div class='red'&gt;&lt;/div&gt;</code>
+	</div>
+	<div  class="row green draggable"><code>&lt;div class='green'&gt;&lt;/div&gt;</code></div>
+	<div class="row blue draggable"><code>&lt;div class='blue'&gt;&lt;/div&gt;</code></div>
+	<div class="row yellow draggable" ><code>&lt;div class='yellow'&gt;&lt;/div&gt;</code></div>
+	<div class="row orange draggable"><code>&lt;div class='orange'&gt;&lt;/div&gt;</code></div>
+	<div class="row black draggable"><p class='white'><code>&lt;div class='black'&gt;&lt;/div&gt;</code></p></div>
+	<div class="row white draggable"><code>&lt;div class='white'&gt;&lt;/div&gt;</code></div>
+	<div class="row pink draggable"><code>&lt;div class='pink'&gt;&lt;/div&gt;</code></div>
+	<div class="row purple draggable"><code>&lt;div class='purple'&gt;&lt;/div&gt;</code></div>
+	<div class="row gray draggable"><code>&lt;div class='gray'&gt;&lt;/div&gt;</code></div>
+</div>
+
+<div class='pack' id='box'>
+	<div class="draggable box">1</div>
+	<div class="draggable box">2</div>
+	<div class="draggable box">3</div>
+	<div class="draggable box">4</div>
+	<div class="draggable box">1</div>
+	<div class="draggable box">2</div>
+	<div class="draggable box">3</div>
+	<div class="draggable box">4</div>
+	<div class="draggable box">1</div>
+	<div class="draggable box">2</div>
+	<div class="draggable box">3</div>
+	<div class="draggable box">4</div>
+	<div class="draggable box">1</div>
+	<div class="draggable box">2</div>
+	<div class="draggable box">3</div>
+	<div class="draggable box">4</div>
+	<div class="draggable box">1</div>
+	<div class="draggable box">2</div>
+	<div class="draggable box">3</div>
+	<div class="draggable box">4</div>
+	<div class="draggable box">1</div>
+	<div class="draggable box">2</div>
+	<div class="draggable box">3</div>
+	<div class="draggable box">4</div>
+</div>
+
+
+
+
+
+</div>
+
+
+
+		<div class="col small">
+			<h3>Key words</h3>
+			<hr class='large'>
+			<ul class='grid'>
+				<li class='grid-item'><a href="">row</a></li>
+				<li class='grid-item'><a href="">col</a></li>
+				<li class='grid-item'><a href="">wrap</a></li>
+				<li class='grid-item'><a href="">small</a></li>
+				<li class='grid-item'><a href="">medium</a></li>
+				<li class='grid-item'><a href="">large</a></li>
+				<li class='grid-item'><a href="">xlarge</a></li>
+				<li class='grid-item'><a href="">little</a></li>
+				<li class='grid-item'><a href="">short</a></li>
+				<li class='grid-item'><a href="">tall</a></li>
+				<li class='grid-item'><a href="">center</a></li>
+				<li class='grid-item'><a href="">start</a></li>
+				<li class='grid-item'><a href="">end</a></li>
+				<li class='grid-item'><a href="">top</a></li>
+				<li class='grid-item'><a href="">middle</a></li>
+				<li class='grid-item'><a href="">bottom</a></li>
+				<li class='grid-item'><a href="">space</a></li>
+				<li class='grid-item'><a href="">quarter</a></li>
+				<li class='grid-item'><a href="">half</a></li>
+				<li class='grid-item'><a href="">giant</a></li>
+				<li class='grid-item'><a href="">full</a></li>
+				<li class='grid-item'><a href="">self-end</a></li>
+				<li class='grid-item'><a href="">self-start</a></li>
+				<li class='grid-item'><a href="">self-stretch</a></li>
+				<li class='grid-item'><a href="">self-center</a></li>
+				<li class='grid-item'><a href="">red</a></li>
+				<li class='grid-item'><a href="">green</a></li>
+				<li class='grid-item'><a href="">blue</a></li>
+				<li class='grid-item'><a href="">yellow</a></li>
+				<li class='grid-item'><a href="">orange</a></li>
+				<li class='grid-item'><a href="">black</a></li>
+				<li class='grid-item'><a href="">white</a></li>
+				<li class='grid-item'><a href="">pink</a></li>
+				<li class='grid-item'><a href="">purple</a></li>
+				<li class='grid-item'><a href="">gray</a></li>
+			</ul>
+		</div>
+</div>
+
+<hr>
+<script src="./jquery/jquery.js"></script>
+<script src="./jquery/drag.js"></script>
+<script src="./dragula/dragula.js"></script>
+<script src="./packery/packery.js"></script>
+<script src="./packery/dragabilly.js"></script>
+	<script>
+
+	window.onload=onloaded()
+
+	
+	function onloaded(){
+		var $grid = $('.pack').packery({
+		  // itemSelector: '.draggable',
+		  // columnWidth helps with drop positioning
+		  columnWidth: 100,
+		  columnHeight: 100
+		});
+	
+
+
+		var draggableElems = document.querySelectorAll('.draggable');
+		// array of Draggabillies
+		var draggies = []
+		// init Draggabillies
+		for ( var i=0, len = draggableElems.length; i < len; i++ ) {
+		  var draggableElem = draggableElems[i];
+		  var draggie = new Draggabilly( draggableElem, {
+		    // options...
+		  });
+		  draggies.push( draggie );
+		 // $grid.packery( 'bindDraggabillyEvents', draggie );
+		}
+	// var $grid = $('.grid').packery({
+	//   itemSelector: '.grid-item',
+	//   // columnWidth helps with drop positioning
+	//   columnWidth: 1
+	// });
+	// $grid.find('.grid-item').each( function( i, gridItem ) {
+	//   var draggie = new Draggabilly( gridItem );
+	//   // bind drag events to Packery
+	//   $grid.packery( 'bindDraggabillyEvents', draggie );
+	// });
+	 // dragula([color, left, box, look, right])
+	// 	var drags = document.querySelectorAll('.drag');
+	// 	console.log(drags.length+'drags array length')
+	// for(var x = 0; x<drags.length;x++){
+	//   drags[x].addEventListener('dragstart', handleDragStart, false);
+	//   drags[x].addEventListener('dragenter', handleDragEnter, false);
+	//   drags[x].addEventListener('dragover', handleDragOver, false);
+	//   drags[x].addEventListener('dragleave', handleDragLeave, false);
+	//   drags[x].addEventListener('drop', handleDrop, false);
+	//   drags[x].addEventListener('dragend', handleDragEnd, false);
+	// };
+}
+	
+	</script>
+</body>
+</html>

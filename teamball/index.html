@@ -1,0 +1,89 @@
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team | Ball</title>
+
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="foundation-icons/foundation-icons.css" />
+    <link rel="stylesheet" href="css/animate.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <script src="/socket.io/socket.io.js"></script>
+
+  </head>
+  <body>
+<div id="Index">
+  <div class="row"> 
+    <div class="top-bar">
+    <div class="top-bar-left">
+  <h2><a href="index.php">Team | Ball</a>
+  </h2>
+    </div>
+
+        <div id='resptxt'></div>
+
+       <div class="top-bar-right">
+
+          <h4><div>{{teamName}}</div><strong>vs.</strong> <div>{{opponentName}}</div> </h4>
+        </div>
+  </div>
+  </div>
+
+  <div class="mainContent"></div>
+  </div>
+
+  <script src="/js/vue.js"></script>
+      <script src="/teamBall/js/jquery.js"></script>
+      <script src="/teamBall/js/what-input.js"></script>
+      <script src="/teamBall/js/foundation.js"></script>
+      <script src="/teamBall/js/teamball.js"></script>
+      <script src="/teamBall/js/js.js"></script>
+        <script>
+        var Index = new Vue({
+          el:'#Index',
+          data:{
+            teamName:'',
+            opponentName:'',
+            loginError:'Login',
+            registerError:'Register'
+          }
+        })
+  document.onready=function(){
+    console.log('Doc is READY!!')
+     cookies = document.cookie.split(';')
+
+      var appl = 'dead'
+      console.log(appl)
+      console.log(cookies)
+        var l = cookies.length;
+        console.log(l)
+
+    // for(var x=0;x<l;x++){
+    //   // console.log('loop')
+    //   var key = cookies[x].split('=')[0]
+    //   console.log(typeof key)
+    //   // console.log(key)
+    //   // console.log(loggedIn)
+    //   var value = cookies[x].split('=')[1]
+    //   // console.log(key+' '+value)
+    //   var loggedIn = ' loggedin'
+
+    //   console.log(key===loggedIn?'yes':'no '+key+' '+loggedIn)
+    //   if( key==='loggenIn'){
+    //     console.log(key)
+    //     if(value==='false'){
+    //       console.log('HOLD UP IM LOGGED I NALREADY')
+    //     }else{
+    //       console.log('This is good im not logged in and i need to do so')
+    //     }
+    //   }
+    // }
+  }
+    </script>
+
+
+ 
+</body>
+</html>

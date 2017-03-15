@@ -1,0 +1,293 @@
+#ddd{
+	/*-webkit-user-select: none;*/  /* Chrome all / Safari all */
+	/*-moz-user-select: none; */    /* Firefox all */
+	/*-ms-user-select: none;  */    /* IE 10+ */
+/*	user-select: none;*/          /* Likely future */ 
+}
+*{
+	margin:0;
+	padding:0;
+}
+#court{
+	/*position:relative;*/
+}
+#courtImage{
+	position:relative;
+}
+#shotbox{
+	position:absolute;
+	background:pink;
+	display: none;
+}
+
+h1, h2, h3, h4, h5, h6{
+	margin: auto;
+	display:block;
+}
+#home{
+	display:flex;
+	border: solid 1px gray;
+}
+#infoform{
+	display:block;
+	position: absolute;
+	bottom:0;
+}
+#homeTeamlist{
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;      /* IE 10+ */
+	user-select: none;          /* Likely future */ 
+	padding-top: -20px;
+	margin-top:-10px;
+
+}
+#homeList{
+	height:300px;
+	overflow: scroll;
+}
+#visitorList{
+	height:300px;
+	overflow: scroll;
+}
+#visitorTeam{
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;      /* IE 10+ */
+	user-select: none;          /* Likely future */ 
+	padding-top: -20px;
+	margin-top:-10px;
+	height:500px;
+	overflow: scroll;
+}
+.moroom{
+	padding:0;
+	margin:0;
+	padding-top: -10px;
+	margin-top: -10px;
+
+}
+.playerIcons{
+	margin:2px;
+	padding: -2px;
+/*	float: right;
+*/	font-size: 10px;
+/*	position:absolute;
+*//*	top:0px;
+	right: 0px;*/
+}
+.hidden{
+	display:none;
+}
+.red{
+	color: red;
+}
+#gameClock{
+	background-color: white;
+	color:red;
+	font-size: 69px;
+	font-family: 'Orbitron', sans-serif;
+	height:100px;
+
+}
+#gameClock>div>div>ul{
+	font-size: 23px;
+	list-style: none;
+}
+#gameTime{
+	text-shadow: 0 0 3px #FF0000, 0 0 5px red;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px; /* future proofing */
+	padding-top: 15px;
+	background-color: black;
+}
+.playButtons{
+	margin:-10px;
+	font-size: 17px;
+	text-shadow: 0 0 3px black;
+
+}
+.playButtons:active{
+	background-color: black;
+text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.9);
+}
+.clockButtons{
+	text-shadow: 0 0 3px black;
+	font-size: 17px;
+}
+.clockButtons:active{
+	background-color: black;
+	text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.9);
+
+}
+
+.subButtons{
+	margin-left: 100px;
+	margin-top: -60px;s
+}
+.shotboxBtn{
+	padding: 10px;
+	font-size: 20px;
+}
+#cancle{
+	/*position:absolute;*/
+	bottom:0px;
+	right:0px;
+}
+#travel{
+	color:yellow;
+	background-color: black;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px; /* future proofing */
+}
+.courtMarkers{
+	text-shadow: 3px 3px 3px #000000;
+	font-size:20px;
+}
+.modalDialog:target {
+  opacity:1;
+  pointer-events: auto;
+}
+
+.modalDialog > div {
+  width: 600px;
+  position: relative;
+  margin: 10% auto;
+  padding: 5px 20px 13px 20px;
+  border-radius: 10px;
+  background: #fff;
+  background: -moz-linear-gradient(#fff, #999);
+  background: -webkit-linear-gradient(#fff, #999);
+  background: -o-linear-gradient(#fff, #999);
+}
+.modalDialog {
+  position: fixed;
+  font-family: Arial, Helvetica, sans-serif;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 99999;
+  opacity:0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
+}
+#addPlayerForm{
+	display:none;
+	z-index:9999;
+	position:absolute;
+	top:5%;
+	left:5%;
+	background:#999;
+	
+}
+#playerStats{
+	display:none;
+	z-index:9999;
+	position:absolute;
+	top:35%;
+	left:5%;
+	background:#999;
+	
+}
+#playerInfo{
+	display:none;
+	z-index:9999;
+	position:absolute;
+	top:5%;
+	left:5%;
+	background:#999;
+	
+}
+
+.close {
+  background: #606061;
+  color: #FFFFFF;
+  line-height: 25px;
+  position: absolute;
+  right: -12px;
+  text-align: center;
+  top: -10px;
+  width: 24px;
+  text-decoration: none;
+  font-weight: bold;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+  -moz-box-shadow: 1px 1px 3px #000;
+  -webkit-box-shadow: 1px 1px 3px #000;
+  box-shadow: 1px 1px 3px #000;
+}
+
+#homeTeamEvents{
+	padding:0px;
+	border:1px solid green;
+	height:300px;
+	overflow: scroll;
+
+}
+#visitorTeamEvents{
+	padding:0px;
+	border:1px solid green;
+	height:300px;
+	overflow: scroll;
+
+}
+
+#visitorList::-webkit-scrollbar { 
+  /* This is the magic bit */
+  display: none;
+}
+#homeList::-webkit-scrollbar { 
+  /* This is the magic bit */
+  display: none;
+}
+
+.eventList{
+	margin: 0px;
+	padding:0px;
+}
+
+#homeTeamEvents::-webkit-scrollbar { 
+  /* This is the magic bit */
+  display: none;
+}
+#visitorTeamEvents::-webkit-scrollbar { 
+  /* This is the magic bit */
+  display: none;
+}
+
+.playerBox{
+	width:100px;
+	height:100px;
+	border:1px solid black;
+}
+
+#resultHistory{
+	border:1px solid green;
+	max-height:400px;
+	overflow: scroll;
+
+}
+.gameBtns{
+	padding-left:10px;
+}
+
+.pad-left{
+	padding-left: 50px;
+}
+#gameBtns{
+	position:absolute;
+		top:0px;
+		 left: 1px;
+}
+.relative{
+	position:relative;
+}
+
+

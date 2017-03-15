@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=320, initial-scale=1"/>
+	<title>jsmpeg streaming</title>
+	<style type="text/css">
+		body {
+			background: #333;
+			text-align: center;
+			margin-top: 10%;
+		}
+		#videoCanvas {
+			/* Always stretch the canvas to 640x480, regardless of its
+			internal size. */
+			width: 640px;
+			height: 480px;
+		}
+	</style>
+</head>
+<body>
+	<!-- The Canvas size specified here is the "initial" internal resolution. jsmpeg will
+		change this internal resolution to whatever the source provides. The size the
+		canvas is displayed on the website is dictated by the CSS style.
+	-->
+	<canvas id="videoCanvas" width="640" height="480">
+		<p>
+			Please use a browser that supports the Canvas Element, like
+			<a href="http://www.google.com/chrome">Chrome</a>,
+			<a href="http://www.mozilla.com/firefox/">Firefox</a>,
+			<a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10
+		</p>
+	</canvas>
+	<button id="left">Click Left</button>
+	<button id="right">Click Right</button>
+	<script type="text/javascript" src="jsmpeg.js"></script>
+	<script type="text/javascript">
+		// Setup the WebSocket connection and start the player
+		var client = new WebSocket( 'ws://192.168.200.90:8080' );
+		var canvas = document.getElementById('videoCanvas');
+		var player = new jsmpeg(client, {canvas:canvas});
+	</script>
+	<script>
+
+	document.getElementById("left").addEventListener("click", function(){
+		httpGetAsync('http://localhost:8080/goleft', function(d){console.log(d)})
+	}, false)
+
+	document.getElementById("right").addEventListener("click", function(){
+		httpGetAsync('http://localhost:8080/goright', function(d){console.log(d)})
+	}, false)
+
+
+
+
+		function httpGetAsync(theUrl, callback)
+		{
+		    var xmlHttp = new XMLHttpRequest();
+		    xmlHttp.onreadystatechange = function() { 
+		        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+		            callback(xmlHttp.responseText);
+		    }
+		    xmlHttp.open("POST", theUrl, true); // true for asynchronous 
+		    xmlHttp.send(null);
+		}
+	</script>
+</body>
+</html>

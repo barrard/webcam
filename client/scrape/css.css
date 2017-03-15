@@ -1,0 +1,51 @@
+*{
+	/*display:inline;*/
+}
+.addQueryButtonInterface{
+	border: 1px solid black;
+	padding: 2px;
+}
+.queryInterface{
+	border: 1px solid black;
+	padding: 2px;
+}
+#coverUp{
+	display:block;
+
+	background-color: black;
+}
+tr{
+	display: block;
+}
+
+li{
+	display:block;
+	list-style-type: circle;
+
+}
+
+#clicks{
+	list-style-type: circle;
+	position:absolute;
+	top:10px;
+	display:inline;
+}
+
+#iframe{
+	display:inline;
+	width:500px;
+	height: 500px;
+}
+
+.green{
+	color:#10aa08;
+}
+.blue{
+	color:#00b8d4;
+}
+.pink{
+	color:#ff6351;
+}
+.yellow{
+	color:#ff8f00;
+}

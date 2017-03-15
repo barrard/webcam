@@ -1,0 +1,171 @@
+<style>
+
+
+.box{
+    left:10px;
+    margin:10px;
+    position: relative;
+    border:3px solid black;
+    height:100px;
+    width:200px;
+}
+
+.red{
+	background: #cc0000
+}
+
+.pink{
+	background: #ff7373
+}
+
+.purple{
+	background: #9600ff
+}
+
+.yellow{
+	background: #ffd700
+}
+
+.pearl{
+	background: #faebd7
+}
+
+.orange{
+	background: #da5c00
+}
+.green{
+	background: #009933
+}
+.blue{
+	background: #2950c5
+}
+	
+</style>
+<p>Pick a color to Add a box</p>
+<input type="color">
+<input type="button" value='Add Box' id='addBoxBtn'>
+<input type="text" id='colorResult'disabled>
+
+<div class="boxArea">
+	
+
+</div>
+
+<!-- <div class="red box" id='box1'>1</div>
+<div class="pink box"id='box2'>2</div>
+<div class="purple box"id='box3'>3</div>
+<div class="yellow box"id='box4'>4</div>
+<div class="pearl box"id='box5'>5</div>
+<div class="orange box"id='box6'>2</div>
+<div class="green box"id='box7'>3</div>
+<div class="blue box"id='box8'>4</div>
+<div class="box"id='box9'>5</div> -->
+
+<script>
+
+$('input[type=color]').on('input', function(){
+	console.log($(this).val());
+	$('#colorResult').val($(this).val())
+})
+var colorInput = $('input[type=color]').val()
+$('#addBoxBtn').on('click', function(){
+	console.log('MAKE BOX');
+		var color = $('#colorResult').val()
+
+	makeBox(color)
+})
+
+var boxAry = ['red', 'pink', 'purple', 'yellow', 'pearl', 'tomoato', 'orange', 'green', 'black', 'bluk']
+
+function makeBox(color){
+	var box = document.createElement('div')
+	console.log(box);
+	$(box).addClass('box')
+	var boxArea = $('.boxArea')
+	box.style.backgroundColor=color
+	$(box).on('click', moveBox)
+	$(boxArea).append(box)
+
+}
+
+
+makeBox('red')
+
+
+function moveBox(e){
+	console.log(e);
+		console.log($(this).attr('id'))
+		console.log($(this).offset().top)
+		console.log($(this).offset().left)
+		console.log('Width '+$(this).css('width'));
+		console.log('Height '+$(this).css('height'));
+		var height = parseInt($(this).css('height'))
+		var width = parseInt( $(this).css('width'))
+		console.log(e.offsetX);
+		console.log(e.offsetY);
+		var id = $(this).attr('id')
+		var top = $(this).offset().top
+		var left = $(this).offset().left
+		// var left;
+		// var right;
+		// var bottom;
+		// var top;
+		console.log('e.offsetX = '+e.offsetX);
+		console.log('e.offsetY = '+e.offsetY);
+		console.log('Half width = '+0.5*width);
+
+		if(e.offsetX < 0.25* width){
+			console.log('LEFT');
+			left-=20
+		}else if(e.offsetX > 0.75* width){
+			console.log('Right');
+			left+=20
+		}else if(e.offsetY < .5*height){
+			console.log('UP');
+			top -=15
+		}else if(e.offsetY > .5*height){
+			console.log('DOWN');
+			top +=15
+		}
+
+
+
+
+
+
+
+		
+
+		$(this).offset({top:top, left:left})
+		socket.emit('blockClick', {
+			id:id,
+			top:top,
+			left:left
+		})
+	}
+
+
+
+	// $('.box').on('click', function(){
+	// 	console.log($(this).attr('id'))
+	// 	console.log($(this).offset().top)
+	// 	console.log($(this).offset().left)
+	// 	var id = $(this).attr('id')
+	// 	var top = $(this).offset().top
+	// 	var left = $(this).offset().left
+	// 	top +=1
+	// 	left+=20
+	// 	$(this).offset({top:top, left:left})
+	// 	socket.emit('blockClick', {
+	// 		id:id,
+	// 		top:top,
+	// 		left:left
+	// 	})
+	// })
+
+	socket.on('blockMove', function(data){
+		console.log('got a blockMove from server')
+		console.log(data)
+		$('#'+data.id).offset({top:data.top, left:data.left})
+	})
+</script>

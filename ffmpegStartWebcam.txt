@@ -1,0 +1,2 @@
+ffmpeg -s 640X480 -f video4linux2 -i /dev/video0 -f mpeg1video -b 800k -r 30 http://192.168.200.86:9999/badass/640/480/
+

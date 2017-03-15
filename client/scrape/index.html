@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="/socket.io/socket.io.js"></script>
+	<link rel="stylesheet" type="text/css" href="css.css">
+	<meta charset="UTF-8">
+	<title>ScrapIt</title>
+</head>
+<body>
+	<div id="coverUp"></div>
+	<h1>Scrape The Internet</h1>
+
+<input id='url' type="text" name="website" value="http://192.168.200.1/xslt?PAGE=C_1_0" placeholder='enter a URL'>
+
+
+	<!-- <iframe id='iframe' src="./iframe.html" name='myframe'></iframe> -->
+	<ul id='clicks'> <h4 id='websiteTitle'></h4>
+<li>clicks</li>
+
+<a href="/downloadhtmlfile" title="">Download HTML</a>
+
+
+	</ul>
+	<ul id='websites'>
+
+		<li>googleee</li>
+	</ul>
+<div class="addQueryButtonInterface">
+	<button onClick="addQueryInterface()">+ query</button>
+</div>
+<div class="queryInterface">
+	<button onClick="getIPdata(event)" >Show me the Data</button>
+	<select name="id" id="">
+		<option value="Transmit:">Transmit</option>
+		<option value="Receive:">Receive</option>
+	</select>
+	<select name="asis" id="">
+		<option value="IP">IP Traffic</option>
+		<option value="ATM">ATM Traffic</option>
+	</select>
+	<div>
+		<ul id='trafficList'></ul>
+	</div>
+</div>
+
+	</div>
+	<script src="../jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

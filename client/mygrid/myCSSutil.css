@@ -1,0 +1,56 @@
+.red{	
+background:#b10821;
+}
+.green{	
+background:green;
+}
+.blue{	
+background:#61afc2;
+}
+.yellow{	
+	background:#daff00;
+}
+.orange{	
+background:#eb6111;
+}
+.black{	
+	background:black;
+}
+.white{	
+background:#e9e8e5;
+}
+.pink{	
+	background:#ff005a;
+}
+.purple{
+	background:#820d7c
+}
+.gray{
+	background:#b0bcbf
+}
+
+
+
+
+.drag{
+	 cursor: move;
+}
+.drag.over {
+  border: 3px dashed #000;
+}
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+.packery-drop-placeholder {
+  outline: 3px dashed #444;
+  outline-offset: -6px;
+  /* transition position changing */
+  -webkit-transition: -webkit-transform 0.2s;
+          transition: transform 0.2s;
+}

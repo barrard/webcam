@@ -1,0 +1,112 @@
+
+
+      <div class="row">
+      	<div class="col-xs-12">
+      		<a class="left button round info" id='startGameBtn'href="#" onclick='newGame();'>Start Game</a>
+      		<a onclick=logout() class="button warning float-right"><span class="red">Logout</span></a>
+      	</div>
+      </div>
+<div class="row">
+	<div class="columns small-4">
+		<form autocomplete="off" action=""method='post'>
+			<input class="" type="text" disabled v-model='teamName'>
+		<div class="row">
+			<div class="collumns small-12">
+				<h2>VS.</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="columns small-12">
+				<select id="teamNameSelect" onchange='getTeamInfo(this.value)'>
+					<option value="">PLEASE SELECT TEAM</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="columns small-12">
+				<div id='dateString'>date</div>
+			</div>
+		</div>
+		</form>		
+	</div>
+	<!-- Team Info For Matchup!!!! -->
+	<div class="column small-8">
+		Opponent Information
+		<div id='opponentInfo'></div>
+
+	</div>
+</div><!-- row -->
+
+<div id='resultHistory'>
+
+Hello <span id="homeName">$teamName</span>
+<br>
+<br>
+<div id="gameHistory">Please select an opponent</div>
+</div>
+
+<script>
+var Matchup = new Vue({
+	el:'#matchup',
+	data:{
+		teamName:LR.teamName
+	}
+})
+$.ajax({
+	type:'GET',
+	url:'/TBsesionInfo',
+	success:function(response){
+		console.log('got the TBsessionInfo '+response.length)
+		console.log(response)
+		console.log(response.teamName)
+		teamName = response.teamName
+		$('#teamName').html(teamName)
+		$('.teamname').val(teamName)
+
+		var l = response.allTBteamNames.length
+		for(var x = 0; x<l;x++){
+			if(response.teamName === response.allTBteamNames[x])continue
+			$('#teamNameSelect').append('<option valaue="'+response.allTBteamNames[x]+'">'+response.allTBteamNames[x]+'</option>')
+		}
+		
+	}
+
+})
+
+	var username;
+	var cookies = document.cookie.split(';')
+	var l = cookies.length
+	for(var x = 0;x<l;x++){
+		var key = cookies[x].split('=')[0]
+		var value = cookies[x].split('=')[1]
+
+		if(key==='teamName'){
+			username=key
+		}
+	}
+
+
+	// document.getElementsByClassName('username').value(username)
+	$('.username').html('HELLO')
+
+
+	// var socket = io.connect('/teamball');
+	// socket.on()
+	// socket.on('userInfo', function(info){
+	// 	console.log('?????????????')
+	// 	console.log(info)
+	// })
+	// $.get('/teamballResponse', function(res){
+
+
+	// })
+
+
+		function logout(){
+			$.get('/logoutTB', function(result){
+				console.log(result)
+				window.location.href = '/'
+			})
+		}
+
+</script>

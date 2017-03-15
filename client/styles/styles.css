@@ -1,0 +1,196 @@
+.btn:focus, .upload-btn:focus{
+  outline: 0 !important;
+}
+
+html,
+body {
+  position:relative;
+  height: 100%;
+  background-color: #4791D2;
+}
+
+/*body {
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+}*/
+
+/*.row {
+  margin-top: 80px;
+}*/
+.top-right{
+  position: absolute;
+  top: 10px;
+  right: -10px;
+}
+
+.upload-btn {
+  color: #ffffff;
+  background-color: #F89406;
+  border: none;
+}
+
+.upload-btn:hover,
+.upload-btn:focus,
+.upload-btn:active,
+.upload-btn.active {
+  color: #ffffff;
+  background-color: #FA8900;
+  border: none;
+}
+
+h4 {
+  padding-bottom: 30px;
+  color: #B8BDC1;
+}
+
+.footer{
+  position:relative;
+  bottom:0px;
+  width:100%;
+  background-color: #6a818c;
+}
+
+/*.glyphicon {
+  font-size: 5em;
+  color: #9CA3A9;
+}*/
+.left{
+  margin-left: -10px;
+}
+.left-small{
+  margin-left: -5px;
+}
+.left-smallest{
+  margin-left: -2px;
+}
+
+
+h2 {
+  margin-top: 15px;
+  color: #68757E;
+}
+
+.panel {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#map {
+  border: 1px solid black;
+  height: 350px;
+}
+
+
+
+#upload-input {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .main-container {
+    width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 450px;
+  }
+}
+
+#chatInterface{
+  height:250px;
+}
+
+.chatBox{
+  height:200px;
+  /*background*/:white;
+  overflow:scroll;
+  margin-bottom:-20px;
+}
+.chatBox li, .userList li{
+  width:auto;
+  word-wrap: break-word;
+  padding: 0px;
+  padding-left:2px;
+  padding-bottom: 2px
+}
+
+
+.chatInput{
+  width:50%;
+}
+
+.userList{
+  height:150px;
+  margin-left: -20px;
+  overflow:scroll;
+}
+.userList::-webkit-scrollbar { 
+  /* This is the magic bit */
+  width: 0 !important
+}
+
+.chatBox::-webkit-scrollbar { 
+  /* This is the magic bit */
+  width: 0 !important
+}
+
+.small-text{
+  font-size: 9px
+}
+
+.medium-text{
+  font-size: 14px;
+}
+
+.large-text {
+  font-size: 21px;
+}
+
+.grey{
+  color:#cccccc;
+}
+
+.map-icon-label {
+   color:tomato;
+  font-size: 24px;
+  /*line-height: 48px;*/
+  text-align: center;
+  white-space: nowrap;
+}
+
+.panell{
+  border: 1px solid black;
+  background-color: whitesmoke;
+}
+
+.thumbnail{
+  overflow:hidden;
+}
+
+.fileIcon{
+  overflow:hidden;
+  margin:15px;
+  display:inline-block;
+  height: 115px;
+  text-align:center;
+  padding: 10px;
+  width: 15%;
+  font-size:16px;
+  background-color: #f9f9f9;
+}
+.fileIcon .glyphicon{
+  font-size: 75px;
+  text-align:center;
+
+}
+
+.primitive{
+  margin-bottom:4px;
+  margin-left:4px;
+  margin-right:4px;
+  background-color: #57c775;
+  border-color:#57c775;
+}
+

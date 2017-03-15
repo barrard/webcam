@@ -1,0 +1,139 @@
+	<h1>Login</h1>
+
+	<form autocomplete="off" action="" method='post'>
+	<div class="row">		
+	<table>
+		<tr>
+			<th>TeamName</th>
+			<th>Password</th>
+			<th>Login</th>
+		</tr>
+		<tr>
+			<td><input v-model='teamName' v-on:input='getTeamName()' type="text" id='teamNameLogin' ></td>
+			<td><input  type="password" id='TBPassword' ></td>
+			<td>    <div id='TBlogin' class="button success">
+	    <span class='success'>Login</span>
+	  </div></td>
+		</tr>
+	</table>
+	</div>
+	<div>{{loginError}}</div>
+	</form>
+	<br><hr>
+	<br>
+	<br>
+	<hr><hr>
+	<h1>Register</h1>
+	<table>
+		<tr>
+			<th>TeamName</th>
+			<th>Password</th>
+			<th>Register</th>
+		</tr>
+		<tr>
+			<td><input v-model='teamName'  type="text" id='registerTeamName' required ></td>
+			<td><input type="password" id='registerTBPassword' required></td>
+			<td>    <div id='TBRegister' class="button warning">
+	    <span class='success'>Register</span>
+	  </div></td>
+		</tr>
+	</table>
+
+	<div>{{registerError}}</div>
+
+	<br><hr>
+
+<script>
+// LR = new Vue({
+// 	el:'#loginRegisterPage',
+// 	data:{
+// 		teamName:'',
+// 		opponentName:'',
+// 		loginError:'',
+// 		registerError:''
+// 	},
+// 	methods:
+// 	{
+// 		getTeamName:function(){
+// 			console.log(this.teamName)
+// 			Index.teamName=this.teamName
+// 			// console.log(Index.teamName)
+// 		}
+// 	}
+// })
+(function(){
+	Vue.component()
+
+})()
+
+socket.on('loginError', function(data){
+	LR.loginError=data
+})
+socket.on('registerError', function(data){
+	LR.registerError=data
+})
+	$('#TBlogin').on('click', function(){
+		console.log('Who is going to lgoin')
+		var teamName = $('#teamNameLogin').val()
+		var TBPassword = $('#TBPassword').val()
+
+		 findTBuser('login', teamName, TBPassword)
+		
+	})
+	$('#TBRegister').on('click', function(){
+		console.log('Who is going to Register')
+		var teamName = $('#registerTeamName').val()
+		var TBPassword = $('#registerTBPassword').val()
+
+		 findTBuser('register', teamName, TBPassword)
+		
+	})
+
+
+var dataObject={};
+function findTBuser(method, username, password){
+
+	var dataObject = {
+		method : method,
+		teamName : username,
+		password : password
+	}
+	// socket.emit('findTBuser',dataObject)
+	$.ajax({
+		type:"POST",
+		url:'/teamballLoginRequest',
+		data:dataObject,
+		success:function(response){
+			console.log('post login request ')
+			// console.log(response)
+			console.log('TEAMBALL LOGIN REQUEST')
+			console.log(response)
+			if(response.errorMessage !== undefined && response.errorMessage){
+				console.log('we got response')
+				if(method == 'login'){
+					console.log('its a login')
+					LR.loginError=response.errorMessage
+				}else if(method=='register'){
+					console.log('ints a resgister')
+					LR.registerError=response.errorMessage
+				}
+			}else{
+				console.log('main conten incomming')
+				$('.mainContent').html(response)
+			}
+		}
+	})
+	// return dataObject
+}
+// function TBRegister(username, password){
+// 	var dataObject = {
+// 		username : username,
+// 		password : password
+// 	}
+// 	socket.emit('TBRegister',dataObject)
+// 	// return dataObject
+// }
+
+
+
+</script>
